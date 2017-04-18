@@ -1,0 +1,1027 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-mongodb-queue/node_modules/mongodb-queue/mongodb-queue.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-mongodb-queue">npmtest-mongodb-queue (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-mongodb-queue/node_modules/mongodb-queue/mongodb-queue.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">11.94% <small>(16 / 134)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">13.33% <small>(16 / 120)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-mongodb-queue/node_modules/mongodb-queue/</a> » mongodb-queue.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ *
+ * mongodb-queue.js - Use your existing MongoDB as a local queue.
+ *
+ * Copyright (c) 2014 Andrew Chilton
+ * - http://chilts.org/
+ * - andychilton@gmail.com
+ *
+ * License: http://chilts.mit-license.org/2014/
+ *
+ **/
+&nbsp;
+var crypto = require('crypto')
+&nbsp;
+// some helper functions
+<span class="fstat-no" title="function not covered">function id() {</span>
+<span class="cstat-no" title="statement not covered">    return crypto.randomBytes(16).toString('hex')</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function now() {</span>
+<span class="cstat-no" title="statement not covered">    return (new Date()).toISOString()</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function nowPlusSecs(secs) {</span>
+<span class="cstat-no" title="statement not covered">    return (new Date(Date.now() + secs * 1000)).toISOString()</span>
+}
+&nbsp;
+module.exports = <span class="fstat-no" title="function not covered">function(mongoDbClient, name, opts) {</span>
+<span class="cstat-no" title="statement not covered">    return new Queue(mongoDbClient, name, opts)</span>
+}
+&nbsp;
+// the Queue object itself
+<span class="fstat-no" title="function not covered">function Queue(mongoDbClient, name, opts) {</span>
+<span class="cstat-no" title="statement not covered">    if ( !mongoDbClient ) {</span>
+<span class="cstat-no" title="statement not covered">        throw new Error("mongodb-queue: provide a mongodb.MongoClient")</span>
+    }
+<span class="cstat-no" title="statement not covered">    if ( !name ) {</span>
+<span class="cstat-no" title="statement not covered">        throw new Error("mongodb-queue: provide a queue name")</span>
+    }
+<span class="cstat-no" title="statement not covered">    opts = opts || {}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    this.name = name</span>
+<span class="cstat-no" title="statement not covered">    this.col = mongoDbClient.collection(name)</span>
+<span class="cstat-no" title="statement not covered">    this.visibility = opts.visibility || 30</span>
+<span class="cstat-no" title="statement not covered">    this.delay = opts.delay || 0</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if ( opts.deadQueue ) {</span>
+<span class="cstat-no" title="statement not covered">        this.deadQueue = opts.deadQueue</span>
+<span class="cstat-no" title="statement not covered">        this.maxRetries = opts.maxRetries || 5</span>
+    }
+}
+&nbsp;
+Queue.prototype.createIndexes = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.createIndex({ deleted : 1, visible : 1 }, <span class="fstat-no" title="function not covered">function(err, indexname) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        self.col.createIndex({ ack : 1 }, { unique : true, sparse : true }, <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">            callback(null, indexname)</span>
+        })
+    })
+}
+&nbsp;
+Queue.prototype.add = <span class="fstat-no" title="function not covered">function(payload, opts, callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+<span class="cstat-no" title="statement not covered">    if ( !callback ) {</span>
+<span class="cstat-no" title="statement not covered">        callback = opts</span>
+<span class="cstat-no" title="statement not covered">        opts = {}</span>
+    }
+<span class="cstat-no" title="statement not covered">    var delay = opts.delay || self.delay</span>
+<span class="cstat-no" title="statement not covered">    var visible = delay ? nowPlusSecs(delay) : now()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var msgs = []</span>
+<span class="cstat-no" title="statement not covered">    if (payload instanceof Array) {</span>
+<span class="cstat-no" title="statement not covered">        if (payload.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">            var errMsg = 'Queue.add(): Array payload length must be greater than 0'</span>
+<span class="cstat-no" title="statement not covered">            return callback(new Error(errMsg))</span>
+        }
+<span class="cstat-no" title="statement not covered">        payload.forEach(<span class="fstat-no" title="function not covered">function(payload) {</span></span>
+<span class="cstat-no" title="statement not covered">            msgs.push({</span>
+                visible  : visible,
+                payload  : payload,
+            })
+        })
+    } else {
+<span class="cstat-no" title="statement not covered">        msgs.push({</span>
+            visible  : visible,
+            payload  : payload,
+        })
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.insertMany(msgs, <span class="fstat-no" title="function not covered">function(err, results) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        if (payload instanceof Array) <span class="cstat-no" title="statement not covered">return callback(null, '' + results.insertedIds)</span></span>
+<span class="cstat-no" title="statement not covered">        callback(null, '' + results.ops[0]._id)</span>
+    })
+}
+&nbsp;
+Queue.prototype.get = <span class="fstat-no" title="function not covered">function(opts, callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+<span class="cstat-no" title="statement not covered">    if ( !callback ) {</span>
+<span class="cstat-no" title="statement not covered">        callback = opts</span>
+<span class="cstat-no" title="statement not covered">        opts = {}</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var visibility = opts.visibility || self.visibility</span>
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        deleted : null,
+        visible : { $lte : now() },
+    }
+<span class="cstat-no" title="statement not covered">    var sort = {</span>
+        _id : 1
+    }
+<span class="cstat-no" title="statement not covered">    var update = {</span>
+        $inc : { tries : 1 },
+        $set : {
+            ack     : id(),
+            visible : nowPlusSecs(visibility),
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.findOneAndUpdate(query, update, { sort: sort, returnOriginal : false }, <span class="fstat-no" title="function not covered">function(err, result) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        var msg = result.value</span>
+<span class="cstat-no" title="statement not covered">        if (!msg) <span class="cstat-no" title="statement not covered">return callback()</span></span>
+&nbsp;
+        // convert to an external representation
+<span class="cstat-no" title="statement not covered">        msg = {</span>
+            // convert '_id' to an 'id' string
+            id      : '' + msg._id,
+            ack     : msg.ack,
+            payload : msg.payload,
+            tries   : msg.tries,
+        }
+        // if we have a deadQueue, then check the tries, else don't
+<span class="cstat-no" title="statement not covered">        if ( self.deadQueue ) {</span>
+            // check the tries
+<span class="cstat-no" title="statement not covered">            if ( msg.tries &gt; self.maxRetries ) {</span>
+                // So:
+                // 1) add this message to the deadQueue
+                // 2) ack this message from the regular queue
+                // 3) call ourself to return a new message (if exists)
+<span class="cstat-no" title="statement not covered">                self.deadQueue.add(msg, <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">                    if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">                    self.ack(msg.ack, <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">                        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">                        self.get(callback)</span>
+                    })
+                })
+<span class="cstat-no" title="statement not covered">                return</span>
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered">        callback(null, msg)</span>
+    })
+}
+&nbsp;
+Queue.prototype.ping = <span class="fstat-no" title="function not covered">function(ack, opts, callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+<span class="cstat-no" title="statement not covered">    if ( !callback ) {</span>
+<span class="cstat-no" title="statement not covered">        callback = opts</span>
+<span class="cstat-no" title="statement not covered">        opts = {}</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var visibility = opts.visibility || self.visibility</span>
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        ack     : ack,
+        visible : { $gt : now() },
+        deleted : null,
+    }
+<span class="cstat-no" title="statement not covered">    var update = {</span>
+        $set : {
+            visible : nowPlusSecs(visibility)
+        }
+    }
+<span class="cstat-no" title="statement not covered">    self.col.findOneAndUpdate(query, update, { returnOriginal : false }, <span class="fstat-no" title="function not covered">function(err, msg, blah) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        if ( !msg.value ) {</span>
+<span class="cstat-no" title="statement not covered">            return callback(new Error("Queue.ping(): Unidentified ack  : " + ack))</span>
+        }
+<span class="cstat-no" title="statement not covered">        callback(null, '' + msg.value._id)</span>
+    })
+}
+&nbsp;
+Queue.prototype.ack = <span class="fstat-no" title="function not covered">function(ack, callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        ack     : ack,
+        visible : { $gt : now() },
+        deleted : null,
+    }
+<span class="cstat-no" title="statement not covered">    var update = {</span>
+        $set : {
+            deleted : now(),
+        }
+    }
+<span class="cstat-no" title="statement not covered">    self.col.findOneAndUpdate(query, update, { returnOriginal : false }, <span class="fstat-no" title="function not covered">function(err, msg, blah) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        if ( !msg.value ) {</span>
+<span class="cstat-no" title="statement not covered">            return callback(new Error("Queue.ack(): Unidentified ack : " + ack))</span>
+        }
+<span class="cstat-no" title="statement not covered">        callback(null, '' + msg.value._id)</span>
+    })
+}
+&nbsp;
+Queue.prototype.clean = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        deleted : { $exists : true },
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.deleteMany(query, callback)</span>
+}
+&nbsp;
+Queue.prototype.total = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.count(<span class="fstat-no" title="function not covered">function(err, count) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        callback(null, count)</span>
+    })
+}
+&nbsp;
+Queue.prototype.size = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        deleted : null,
+        visible : { $lte : now() },
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.count(query, <span class="fstat-no" title="function not covered">function(err, count) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        callback(null, count)</span>
+    })
+}
+&nbsp;
+Queue.prototype.inFlight = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        ack     : { $exists : true },
+        visible : { $gt : now() },
+        deleted : null,
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.count(query, <span class="fstat-no" title="function not covered">function(err, count) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        callback(null, count)</span>
+    })
+}
+&nbsp;
+Queue.prototype.done = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var query = {</span>
+        deleted : { $exists : true },
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    self.col.count(query, <span class="fstat-no" title="function not covered">function(err, count) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return callback(err)</span></span>
+<span class="cstat-no" title="statement not covered">        callback(null, count)</span>
+    })
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 18 2017 05:57:11 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
