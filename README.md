@@ -1,6 +1,6 @@
 # npmtest-mongodb-queue
 
-#### test coverage for  [mongodb-queue (v3.1.0)](https://github.com/chilts/mongodb-queue)  [![npm package](https://img.shields.io/npm/v/npmtest-mongodb-queue.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-mongodb-queue) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-mongodb-queue.svg)](https://travis-ci.org/npmtest/node-npmtest-mongodb-queue)
+#### basic test coverage for  [mongodb-queue (v3.1.0)](https://github.com/chilts/mongodb-queue)  [![npm package](https://img.shields.io/npm/v/npmtest-mongodb-queue.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-mongodb-queue) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-mongodb-queue.svg)](https://travis-ci.org/npmtest/node-npmtest-mongodb-queue)
 
 #### Message queues which uses MongoDB.
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-mongodb-queue/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-mongodb-queue/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-mongodb-queue/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-mongodb-queue/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-mongodb-queue/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-mongodb-queue/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-mongodb-queue/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-mongodb-queue/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-mongodb-queue/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-mongodb-queue/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-mongodb-queue/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-mongodb-queue/build/coverage.html/index.html)
 
@@ -76,7 +76,8 @@
     "scripts": {
         "test": "set -e; for FILE in test/*.js; do node $FILE; done"
     },
-    "version": "3.1.0"
+    "version": "3.1.0",
+    "bin": {}
 }
 ```
 
